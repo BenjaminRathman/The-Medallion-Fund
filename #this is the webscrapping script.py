@@ -2,8 +2,8 @@
 #going to take from yahoo finance 
 
 
-import requests
-from bs4 import BeautifulSoup
+import requests # type: ignore
+from bs4 import BeautifulSoup  # type: ignore
 
 # Function to get the HTML content from a URL
 def get_html_content(url):
