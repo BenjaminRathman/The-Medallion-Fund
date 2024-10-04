@@ -8,7 +8,7 @@ going to need to scrape alot of data for the training probably can still use the
 The model
 -------------------------------------
 going to start trying a decision tree forest model then maybe transistion to a decision tree forest
-
+data transformations 
 
 
 steps
@@ -21,3 +21,6 @@ will likely train the model in colab and import it to vs code
 thoughts
 ----------------
 maybe make a new file that contains the stocks attributes bc this is how we could get the url of the stock 
+
+
+
