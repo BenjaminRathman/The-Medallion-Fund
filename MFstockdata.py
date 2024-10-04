@@ -2,13 +2,13 @@
 import csvadder
 
 class Stock:
-    def __init__(self, actual_marketcap, num_of_shares, share_price, tkr_symbl):
-        self.actual_marketcap = actual_marketcap 
+    def __init__(self, tkr_symbl):
+        self.actual_marketcap = 0
         self.data = []
-        self.num_of_shares = num_of_shares
+        self.num_of_shares = 0
         self.models_marketcap = 0
         self.models_shareprice = 0
-        self.share_price = share_price
+        self.share_price = 0
         self.tkr_symbl = tkr_symbl
         self.url = ""
 
@@ -24,5 +24,5 @@ class Stock:
     
     # Construct the full URL
         self.url =  f"{base_url}{self.tkr_symbl}"
-    
+        return self.url
         

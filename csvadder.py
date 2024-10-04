@@ -4,16 +4,16 @@ import csv
 import MFwebscrapper
 
 # Function to fetch data from the web scraping script (assumed to return a list of scraped data)
-def get_scraped_data():
-    data = MFwebscrapper.get_content()
+def get_scraped_data(url):
+    data = MFwebscrapper.get_content(url)
     if data == []:
         return ["No returned data"]
     else:   
         return data
 
 # Function to append data to a CSV file
-def append_to_csv(filename):
-    data = get_scraped_data()
+def append_to_csv(filename, url):
+    data = get_scraped_data(url)
     
    
 
@@ -26,6 +26,5 @@ def append_to_csv(filename):
         for item in data:
             writer.writerow([item])
 
-def run_adder_on_file(filename): # this is basically a getter function to be called in MF analysis
-    append_to_csv(filename)
+
     

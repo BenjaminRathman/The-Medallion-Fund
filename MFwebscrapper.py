@@ -31,8 +31,8 @@ def extract_data(soup):
     return data
 
 # Main function to scrape a website
-def get_content():
-    url = "https://example.com"  # Replace with the website you want to scrape
+def get_content(url):
+    
     html_content = get_html_content(url)
     
     if html_content:
