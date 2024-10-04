@@ -1,0 +1,2 @@
+Im wondering if it makes sense to have the script run on one stock but will need to scrape huge amounts of data
+to actually train it so this current project is working on one iteration in current time (not the trained model)
