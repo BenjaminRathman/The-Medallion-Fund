@@ -2,7 +2,9 @@ Im wondering if it makes sense to have the script run on one stock but will need
 to actually train it so this current project is working on one iteration in current time (not the trained model)
 going to need to scrape alot of data for the training probably can still use the webscrapping script for this 
 
-
+webscrapping
+------------------------------
+the web scrapper is not working but difficult to fix if i dont know what to scrape for 
 
 
 The model
