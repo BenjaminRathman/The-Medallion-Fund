@@ -1,6 +1,6 @@
 #this is the webscrapping script 
 #going to take from yahoo finance 
-import MFstockdata
+
 
 import requests 
 from bs4 import BeautifulSoup  

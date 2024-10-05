@@ -11,6 +11,7 @@ The model
 -------------------------------------
 going to start trying a decision tree forest model then maybe transistion to a decision tree forest
 data transformations 
+need to figure out what the models "target" is 
 
 
 steps

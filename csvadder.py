@@ -18,13 +18,16 @@ def append_to_csv(filename, url):
    
 
     # Open file in write mode because we want this to either create a new file or we want it to overwrite an old file 
-    with open(filename, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
+    with open(filename, mode='w', newline='', encoding='utf-8') as csvfile:
+        writer = csv.writer(csvfile)
         
 
         # Write the data rows
-        for item in data:
-            writer.writerow([item])
+        
+            
+                
+        writer.writerow(data)
+        
 
 
     
