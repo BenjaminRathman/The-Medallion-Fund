@@ -2,16 +2,25 @@ Im wondering if it makes sense to have the script run on one stock but will need
 to actually train it so this current project is working on one iteration in current time (not the trained model)
 going to need to scrape alot of data for the training probably can still use the webscrapping script for this 
 
+
+
+dimensional small value fund (dimensional sv index?)
+
+
 webscrapping
 ------------------------------
-the web scrapper is not working but difficult to fix if i dont know what to scrape for 
+webscrapper now operational need to find what we want to scrape for 
 
 
 The model
 -------------------------------------
 going to start trying a decision tree forest model then maybe transistion to a decision tree forest
 data transformations 
-need to figure out what the models "target" is 
+models target will be the stocks market cap 
+will scrape alot of data from dimensionalsv index to use as baseline.
+the thought is that this is a annual return of 11 percent. If the thought works correctly
+the model will be able to tell if a stock is performing at 11 percent growth if it is under or overvalued 
+
 
 
 steps
@@ -23,7 +32,109 @@ will likely train the model in colab and import it to vs code
 
 thoughts
 ----------------
-maybe make a new file that contains the stocks attributes bc this is how we could get the url of the stock 
+Maybe think about using expected value of a stock. ie using historical data the stock "value" should be able to be calculated using expected value this could be compared to the actual price of the stock 
+using prevous data maybe 4 stocks resemble our current stock. using these 4 stocks calculate the expected value if this is above some threshold buy 
 
 
 
+what i have put in chat gpt 
+------------------------------
+Please do not show code right now I am just trying to formulate a plan of how to go about this 
+
+
+My thought is to look at historical data (for example share price market cap pe ratio etc)of stocks and see how over time they perform and load that into a file. Then i would look at a current stock and use a ai model to match it as closely as possible to several instances of stocks in the file. then follow the price changes of those closely related stocks. using those price points calculated the expected value over a certain time.
+
+to go about this what ai models should I look at what feautures should I use etc?
+
+answer 
+Data Collection and Preparation
+Objective: Gather a comprehensive dataset that includes historical stock performance and fundamental metrics for multiple stocks over time.
+
+Data Sources:
+
+Yahoo Finance, Alpha Vantage, or other financial APIs that provide historical stock data.
+Data points for each stock could include:
+Daily or weekly stock prices (open, close, high, low, volume).
+Fundamental metrics like market cap, P/E ratio, EPS (Earnings Per Share), price-to-book ratio, dividend yield, revenue, net income, and debt-to-equity ratio.
+Technical indicators like moving averages, RSI (Relative Strength Index), MACD (Moving Average Convergence Divergence), and Bollinger Bands.
+You can aggregate these metrics over different time periods (e.g., last 3 months, last 12 months, etc.) for each stock.
+Feature Engineering: Create features that represent each stock’s profile at a given point in time:
+
+Recent performance metrics (e.g., 30-day return, 60-day return).
+Fundamental metrics like P/E ratio, earnings growth, and debt levels.
+Technical indicators to capture short-term price movements.
+Sector or industry to differentiate stocks from different sectors.
+Sentiment data (if available), such as news sentiment or social media sentiment around the stock.
+File Storage: Store this data in a structured file like a CSV, where each row represents a stock’s state at a given time (e.g., a specific date) with all its features.
+
+2. Similarity Matching for Stock Selection
+Objective: Find stocks in your historical dataset that are most similar to the current stock's profile.
+
+AI Models to Consider:
+
+K-Nearest Neighbors (KNN): This is a simple and effective method for similarity matching. KNN can help find the most similar stocks based on feature vectors.
+Use KNN to find the top K historical instances that are closest to the current stock's feature profile (e.g., stocks with similar P/E ratios, market caps, and price patterns).
+Distance metrics like Euclidean distance or cosine similarity can be used to measure similarity.
+Dimensionality Reduction Techniques:
+PCA (Principal Component Analysis): This can reduce the number of features while preserving the variance, making the similarity search more efficient.
+TSNE or UMAP: These can be useful for visualizing the feature space and clustering similar stocks together.
+Clustering Models:
+K-Means Clustering: Group stocks into clusters based on their feature similarity. For a current stock, find the cluster it belongs to and look at other stocks within the same cluster for similar behavior.
+Distance Metrics: Calculate the similarity between the current stock and each historical instance using metrics like Euclidean distance, Manhattan distance, or cosine similarity based on the selected features.
+
+3. Value Estimation Using Similar Stocks
+Objective: Use the performance of similar stocks to estimate the future value of the current stock.
+
+Modeling Techniques:
+Weighted Average of Similar Stocks:
+Assign weights to the historical stocks based on their similarity to the current stock.
+Calculate the weighted average of the future price changes of these similar stocks over your desired time horizon.
+This approach can be simpler but effective if similarity is a strong predictor.
+Time Series Forecasting Models:
+Use the time series data of the similar stocks to build a model that forecasts the price movement of the current stock.
+LSTM (Long Short-Term Memory) networks can be effective here, especially if you use the past price movements of similar stocks as input sequences to predict future prices.
+Ensemble Models:
+Combine multiple regression models (e.g., XGBoost, Random Forest) to predict the future value, using the similarity scores and features of similar stocks as inputs.
+Use the average or majority voting of multiple models to make the final prediction.
+4. Model Features Selection
+Key Features to consider for both similarity matching and prediction:
+
+Fundamental Data:
+Market Cap: Indicates company size.
+P/E Ratio: Measures valuation relative to earnings.
+Revenue Growth: Growth potential of the company.
+Debt-to-Equity Ratio: Financial stability.
+Technical Indicators:
+Moving Averages (e.g., 50-day, 200-day): Trends and momentum.
+RSI: Indicates overbought or oversold conditions.
+MACD: Identifies potential buy or sell signals.
+Historical Price Trends:
+Use features like 3-month returns, volatility, and price momentum to capture past price behaviors.
+Sector Information:
+Sector or industry category to ensure comparison with similar types of businesses.
+Sentiment Analysis (if available):
+News sentiment, analyst ratings, or social media mentions can provide insight into market perceptions.
+5. Training and Evaluation
+Train the Similarity Model (e.g., KNN) using the historical data and tune the number of neighbors (K) and distance metrics.
+Evaluate the Forecasting Model:
+Use backtesting on historical data to see how well the model would have predicted the price movements.
+Use metrics like Mean Absolute Error (MAE), Mean Squared Error (MSE), and R-Squared to evaluate accuracy.
+6. Prediction Pipeline
+Process to Estimate a Current Stock’s Value:
+
+Step 1: Input the current stock’s data (latest financial and technical data).
+Step 2: Use the similarity model to find the K most similar historical stocks.
+Step 3: Analyze how those similar stocks have moved over the chosen time period.
+Step 4: Use the weighted changes in price to estimate the current stock’s future value.
+Step 5: Adjust the prediction using time series analysis for more precise forecasting.
+7. Deployment
+Once the model is trained and evaluated, you can build a pipeline that automates the process:
+Data Input: Pull in current stock data through an API.
+Feature Calculation: Automatically compute the necessary features.
+Model Prediction: Use the AI model to estimate the stock’s future value.
+Output: Store the prediction in a file or display it through a dashboard.
+Summary of Models:
+KNN: For similarity matching.
+PCA: To reduce dimensionality before similarity search.
+Weighted Regression Models: For value estimation using similar stocks.
+LSTM: For time series forecasting based on similar stock trends.

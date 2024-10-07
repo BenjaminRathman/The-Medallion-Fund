@@ -20,7 +20,7 @@ def parse_html(html_content):
     return BeautifulSoup(html_content, 'html.parser')
 
 # Function to extract the name and value using the provided HTML path
-def extract_data(soup):
+def extract_data_one_stock(soup):
     try:
         # Try to extract the <h1> tag from the specific section  # need to work on the find 
         name_tag = soup.find('h1',class_="yf-xxbei9")  #<h1 class="yf-xxbei9">S&amp;P 500 (^GSPC)</h1>
@@ -49,12 +49,16 @@ def get_content(url):
     
     if html_content:
         soup = parse_html(html_content)
-        name, value = extract_data(soup)
+        name, value = extract_data_one_stock(soup)
         
        
         
         return [name,value]
         
         
-#if __name__ == "__main__":
- #   get_content()
+def find_index(soup): # if this runs on a loop it could get all ticker symbols of the stocks that belong to a index this list could then be passed into old code that gathers data
+    stocks_in_index = []
+    
+    
+    
+    return stocks_in_index
