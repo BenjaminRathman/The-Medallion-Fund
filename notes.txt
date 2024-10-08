@@ -7,6 +7,10 @@ going to need to scrape alot of data for the training probably can still use the
 dimensional small value fund (dimensional sv index?)
 
 
+links 
+https://www.macrotrends.net/stocks/charts/AAPL/apple/pe-ratio - macrotrends shows values of stocks for the last months 
+
+
 webscrapping
 ------------------------------
 webscrapper now operational need to find what we want to scrape for 
@@ -14,12 +18,11 @@ webscrapper now operational need to find what we want to scrape for
 
 The model
 -------------------------------------
-going to start trying a decision tree forest model then maybe transistion to a decision tree forest
+KNN model 
 data transformations 
-models target will be the stocks market cap 
+models target will be matching other stocks 
 will scrape alot of data from dimensionalsv index to use as baseline.
-the thought is that this is a annual return of 11 percent. If the thought works correctly
-the model will be able to tell if a stock is performing at 11 percent growth if it is under or overvalued 
+
 
 
 

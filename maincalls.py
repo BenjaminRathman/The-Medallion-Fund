@@ -13,5 +13,7 @@ def training_data(): #could probably implement a loop here
     
 training_data()
 
-def gather_index_data():
-    pass
+def gather_lst_data(url):
+    csvadder.append_to_csv("modelT_data.csv", url)
+    
+gather_lst_data("https://www.macrotrends.net/stocks/charts/AAPL/apple/pe-ratio")

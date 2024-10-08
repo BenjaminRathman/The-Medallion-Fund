@@ -56,9 +56,9 @@ def get_content(url):
         return [name,value]
         
         
-def find_index(soup): # if this runs on a loop it could get all ticker symbols of the stocks that belong to a index this list could then be passed into old code that gathers data
-    stocks_in_index = []
+
     
     
     
-    return stocks_in_index
+    
+    

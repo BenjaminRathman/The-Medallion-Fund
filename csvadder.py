@@ -1,11 +1,11 @@
 #this code will take from the webscrapping file and add it to our csv
 import csv
 #import os
-import MFwebscrapper
+import trainingdatascrapper
 
 # Function to fetch data from the web scraping script (assumed to return a list of scraped data)
 def get_scraped_data(url):
-    data = MFwebscrapper.get_content(url)
+    data = trainingdatascrapper.get_list_of_data(url)
     if data == []:
         return ["No returned data"]
     else:   
@@ -25,8 +25,8 @@ def append_to_csv(filename, url):
         # Write the data rows
         
             
-                
-        writer.writerow(data)
+        for item in data:
+            writer.writerow(item)
         
 
 
